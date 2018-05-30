@@ -8,7 +8,7 @@
  */
 
 package com.facebook.react.modules.network;
-
+import com.cloudflare.api.CFMobile;
 import android.os.Build;
 
 import com.facebook.common.logging.FLog;
@@ -53,7 +53,7 @@ public class OkHttpClientProvider {
       .writeTimeout(0, TimeUnit.MILLISECONDS)
       .cookieJar(new ReactCookieJarContainer());
 
-    return enableTls12OnPreLollipop(client).build();
+    return CFMobile.createOkHttp3Client(enableTls12OnPreLollipop(client));
   }
 
   /*
